@@ -533,6 +533,16 @@ export class WhatsappSessionWebJSCore extends WhatsappSession {
     await chat.clearState();
   }
 
+  async startRecording(request: ChatRequest) {
+    const chat: Chat = await this.whatsapp.getChatById(request.chatId);
+    await chat.sendStateRecording();
+  }
+
+  async stopRecording(request: ChatRequest) {
+    const chat: Chat = await this.whatsapp.getChatById(request.chatId);
+    await chat.clearState();
+  }
+
   async setReaction(request: MessageReactionRequest) {
     const message = this.recreateMessage(request.messageId);
     return message.react(request.reaction);

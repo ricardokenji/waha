@@ -380,6 +380,10 @@ export abstract class WhatsappSession {
 
   abstract stopTyping(chat: ChatRequest);
 
+  abstract startRecording(chat: ChatRequest);
+
+  abstract stopRecording(chat: ChatRequest);
+
   abstract setReaction(request: MessageReactionRequest);
 
   setStar(request: MessageStarRequest): Promise<void> {

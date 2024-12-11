@@ -811,6 +811,16 @@ export class WhatsappSessionNoWebCore extends WhatsappSession {
     return this.sock.sendPresenceUpdate('paused', chatId);
   }
 
+  async startRecording(request: ChatRequest) {
+    const chatId = toJID(this.ensureSuffix(request.chatId));
+    return this.sock.sendPresenceUpdate('recording', chatId);
+  }
+
+  async stopRecording(request: ChatRequest) {
+    const chatId = toJID(this.ensureSuffix(request.chatId));
+    return this.sock.sendPresenceUpdate('paused', chatId);
+  }
+
   public async getChatMessages(
     chatId: string,
     query: GetChatMessagesQuery,

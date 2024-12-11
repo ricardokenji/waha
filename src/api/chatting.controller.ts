@@ -134,6 +134,21 @@ export class ChattingController {
     return { result: true };
   }
 
+  @Post('/startRecording')
+  async startRecording(@Body() chat: ChatRequest) {
+    // It's infinitive action
+    const whatsapp = await this.manager.getWorkingSession(chat.session);
+    await whatsapp.startRecording(chat);
+    return { result: true };
+  }
+
+  @Post('/stopRecording')
+  async stopRecording(@Body() chat: ChatRequest) {
+    const whatsapp = await this.manager.getWorkingSession(chat.session);
+    await whatsapp.stopRecording(chat);
+    return { result: true };
+  }
+
   @Put('/reaction')
   @ApiOperation({ summary: 'React to a message with an emoji' })
   async setReaction(@Body() request: MessageReactionRequest) {
